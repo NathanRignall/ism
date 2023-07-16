@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  card1:
+    image: ism/flight-control:dev
+    build:
+      context: flight_control/
+      dockerfile: ./Dockerfile
+    environment:
+      - DEVICE_IDENTIFIER=11
+      - RADIO_MULTICAST_ADDRESS=239.255.128.127
+      - CLOUD_SERVER_ADDRESS=172.020.000.011
+      - INITIAL_LATITUDE=52.0
+      - INITIAL_LONGITUDE=0.0
+      - INITIAL_VELOCITY_X=400
+      - INITIAL_VELOCITY_Y=0
+      - IPC_CORE_RX_PORT=5000
+      - IPC_CORE_TX_PORT=5001
+    networks:
+      - system
+    ipc: shareable
+
+networks:
+  system:
+    driver: bridge

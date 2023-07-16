@@ -1,0 +1,24 @@
+name = "flight_control"
+description = "Shiny new project"
+version = "0.1.0-dev"
+
+authors = ["Nathan Rignall"]
+maintainers = ["Nathan Rignall <rignallnathan@gmail.com>"]
+maintainers-logins = ["NathanRignall"]
+
+executables = ["flight_control"]
+
+[build-switches]
+"*".style_checks = "No"
+"*".Ada_Version = "Ada2022"
+
+[environment]
+DEVICE_IDENTIFIER.set = "89"
+RADIO_MULTICAST_ADDRESS.set = "239.255.128.127"
+CLOUD_SERVER_ADDRESS.set = "010.000.000.001"
+INITIAL_LATITUDE.set = "52.0"
+INITIAL_LONGITUDE.set = "0.0"
+INITIAL_VELOCITY_X.set = "400"
+INITIAL_VELOCITY_Y.set = "0"
+IPC_CORE_RX_PORT.set = "5000"
+IPC_CORE_TX_PORT.set = "5001"
