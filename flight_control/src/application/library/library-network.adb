@@ -45,8 +45,7 @@ package body Library.Network is
    begin
 
       Ada.Text_IO.Put_Line ("Network_Type Initialize");
-      Ada.Text_IO.Put_Line ("Device Id" & This.Device_Identifier'Image);
-
+   
       -- set the variables
       This.Device_Identifier := Device_Identifier;
 
@@ -58,6 +57,8 @@ package body Library.Network is
 
       This.Cloud_Server_Address    := Cloud_Server_Address;
       This.Cloud_Tx_Port           := Cloud_Tx_Port;
+
+      Ada.Text_IO.Put_Line ("Device Id" & This.Device_Identifier'Image);
 
    end Initialize;
 

@@ -1,6 +1,12 @@
 with Ada.Text_IO;
 with Ada.Streams;
 
+with Application.State;
+
+with Types.Physics;
+
+use type Types.Physics.Scientific;
+
 package body Drivers.Imu is
 
    procedure Receive_Packet (This : in out Imu_Type);
@@ -55,6 +61,13 @@ package body Drivers.Imu is
       --  -- overlay the data on the packet
       Ada.Text_IO.Put_Line (New_Packet'Image);
 
+      -- Bad code for demo
+      Application.State.Core_State.Physical_State.Acceleration_Vector(Types.Physics.X) := Types.Physics.Acceleration_Type( Types.Physics.Scientific(New_Packet.Acceleration_X) / 100.0);
+      Application.State.Core_State.Physical_State.Acceleration_Vector(Types.Physics.Y) := Types.Physics.Acceleration_Type( Types.Physics.Scientific(New_Packet.Acceleration_Y) / 100.0);
+      Application.State.Core_State.Physical_State.Acceleration_Vector(Types.Physics.Z) := Types.Physics.Acceleration_Type( Types.Physics.Scientific(New_Packet.Acceleration_Z) / 100.0);
+
+      Ada.Text_IO.Put_Line (Application.State.Core_State.Physical_State.Acceleration_Vector'Image);
+      
    end Receive_Packet;
 
 end Drivers.Imu;

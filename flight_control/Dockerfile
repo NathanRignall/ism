@@ -47,3 +47,6 @@ COPY --from=builder /project/bin .
 
 # set the entrypoint
 CMD ["/flight_control"]
+
+# expose the port
+EXPOSE 5000

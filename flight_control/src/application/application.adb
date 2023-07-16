@@ -156,8 +156,8 @@ package body Application is
       --  Control.Schedule (Cycle);
 
       -- schedule the applications
-      --  Network.Schedule (Cycle);
-      --  Telemetry.Schedule (Cycle);
+      Network.Schedule (Cycle);
+      Telemetry.Schedule (Cycle);
 
    end Schedule;
 

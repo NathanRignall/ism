@@ -15,16 +15,35 @@ services:
       - IPC_CORE_RX_PORT=4000
       - IPC_CORE_TX_PORT=4001
       - EDGE_RX_PORT=5000
-      - EDGE_TX_PORT=5001
+      - EDGE_TX_PORT=5000
       - RADIO_MULTICAST_ADDRESS=239.255.128.127
       - RADIO_RX_PORT=6000
-      - RADIO_TX_PORT=6001
-      - CLOUD_SERVER_ADDRESS=172.020.000.011
+      - RADIO_TX_PORT=6000
+      - CLOUD_SERVER_ADDRESS=172.024.000.002
       - CLOUD_RX_PORT=7000
-      - CLOUD_TX_PORT=7001
+      - CLOUD_TX_PORT=7000
     networks:
       - system
-    ipc: shareable
+    ports:
+      - "5000:5000/udp"
+    depends_on:
+      - ground_station
+  ground_station:
+    image: ism/ground-station:dev
+    build:
+      context: ./ground_station/
+      dockerfile: ./Dockerfile
+    environment:
+      - DEVICE_IDENTIFIER=100
+      - RADIO_RX_PORT=6000
+      - RADIO_TX_PORT=6000
+      - CLOUD_RX_PORT=7000
+      - CLOUD_TX_PORT=7000
+    networks:
+      - system
+    ports:
+      - "4000:4000"
+    
 
 networks:
   system:

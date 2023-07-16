@@ -32,19 +32,21 @@ package Types.State is
   Aircraft_Identifier_Default : constant Aircraft_Identifier_Type := 0;
 
   type Aircraft_Type is record
-    Identifier      : Aircraft_Identifier_Type;
-    Position        : Types.Physics.Position_Type;
-    Velocity_Vector : Types.Physics.Velocity_Vector_Type;
-    Rotation_Vector : Types.Physics.Rotation_Vector_Type;
-    Active          : Boolean;
-    Time            : Ada.Real_Time.Time;
+    Identifier          : Aircraft_Identifier_Type;
+    Position            : Types.Physics.Position_Type;
+    Velocity_Vector     : Types.Physics.Velocity_Vector_Type;
+    Rotation_Vector     : Types.Physics.Rotation_Vector_Type;
+    Acceleration_Vector : Types.Physics.Acceleration_Vector_Type;
+    Active              : Boolean;
+    Time                : Ada.Real_Time.Time;
   end record;
   Aircraft_Default : constant Aircraft_Type :=
-   (Identifier      => Aircraft_Identifier_Default,
-    Position        => Types.Physics.Position_Default,
-    Velocity_Vector => Types.Physics.Velocity_Vector_Default,
-    Rotation_Vector => Types.Physics.Rotation_Vector_Default, Active => False,
-    Time            => Ada.Real_Time.Clock);
+   (Identifier          => Aircraft_Identifier_Default,
+    Position            => Types.Physics.Position_Default,
+    Velocity_Vector     => Types.Physics.Velocity_Vector_Default,
+    Rotation_Vector     => Types.Physics.Rotation_Vector_Default,
+    Acceleration_Vector => Types.Physics.Acceleration_Vector_Default,
+    Active              => False, Time => Ada.Real_Time.Clock);
 
   type Aircraft_Index_Type is range 1 .. 100;
   Aircraft_Index_Default : constant Aircraft_Index_Type := 1;

@@ -144,6 +144,9 @@ package body Library.Telemetry is
             Application.State.Aircraft_State (Aircraft_Index)
               .Rotation_Vector                                         :=
               Telemetry_Packet.Location.Rotation_Vector;
+            Application.State.Aircraft_State (Aircraft_Index)
+               .Acceleration_Vector                                     :=
+               Telemetry_Packet.Location.Acceleration_Vector;
 
             -- set the time of the last update
             Application.State.Aircraft_State (Aircraft_Index).Time :=
@@ -177,6 +180,9 @@ package body Library.Telemetry is
             Application.State.Aircraft_State (Aircraft_Index)
               .Rotation_Vector                                         :=
               Telemetry_Packet.Location.Rotation_Vector;
+            Application.State.Aircraft_State (Aircraft_Index)
+              .Acceleration_Vector                                     :=
+              Telemetry_Packet.Location.Acceleration_Vector;
 
             -- set the time of the last update
             Application.State.Aircraft_State (Aircraft_Index).Time :=
@@ -259,7 +265,10 @@ package body Library.Telemetry is
                   Application.State.Core_State.Physical_State.Velocity_Vector,
                 Rotation_Vector =>
                   Application.State.Core_State.Physical_State
-                    .Rotation_Vector));
+                    .Rotation_Vector,
+               Acceleration_Vector =>
+                 Application.State.Core_State.Physical_State
+                   .Acceleration_Vector));
 
       -- form the packet using the telemetry packet
       New_Packet :=
