@@ -8,14 +8,20 @@ services:
       dockerfile: ./Dockerfile
     environment:
       - DEVICE_IDENTIFIER=11
-      - RADIO_MULTICAST_ADDRESS=239.255.128.127
-      - CLOUD_SERVER_ADDRESS=172.020.000.011
       - INITIAL_LATITUDE=52.0
       - INITIAL_LONGITUDE=0.0
       - INITIAL_VELOCITY_X=400
       - INITIAL_VELOCITY_Y=0
-      - IPC_CORE_RX_PORT=5000
-      - IPC_CORE_TX_PORT=5001
+      - IPC_CORE_RX_PORT=4000
+      - IPC_CORE_TX_PORT=4001
+      - EDGE_RX_PORT=5000
+      - EDGE_TX_PORT=5001
+      - RADIO_MULTICAST_ADDRESS=239.255.128.127
+      - RADIO_RX_PORT=6000
+      - RADIO_TX_PORT=6001
+      - CLOUD_SERVER_ADDRESS=172.020.000.011
+      - CLOUD_RX_PORT=7000
+      - CLOUD_TX_PORT=7001
     networks:
       - system
     ipc: shareable

@@ -38,7 +38,9 @@ package body Library.Network is
       Radio                   :        Drivers.Ethernet.Ethernet_Access_Type;
       Cloud                   :        Drivers.Ethernet.Ethernet_Access_Type;
       Radio_Multicast_Address :        Drivers.Ethernet.Address_V4_Type;
-      Cloud_Server_Address    :        Drivers.Ethernet.Address_V4_Type)
+      Radio_Tx_Port           :        Drivers.Ethernet.Port_Type;
+      Cloud_Server_Address    :        Drivers.Ethernet.Address_V4_Type;
+      Cloud_Tx_Port           :        Drivers.Ethernet.Port_Type)
    is
    begin
 
@@ -52,7 +54,10 @@ package body Library.Network is
       This.Cloud := Cloud;
 
       This.Radio_Multicast_Address := Radio_Multicast_Address;
+      This.Radio_Tx_Port           := Radio_Tx_Port;
+
       This.Cloud_Server_Address    := Cloud_Server_Address;
+      This.Cloud_Tx_Port           := Cloud_Tx_Port;
 
    end Initialize;
 
@@ -462,7 +467,7 @@ package body Library.Network is
 
             -- send the packet
             This.Radio.Send
-              (Address => Destination_Address, Port => 5_000, Data => New_Data,
+              (Address => Destination_Address, Port => This.Radio_Tx_Port, Data => New_Data,
                Last    => Last);
 
          elsif Is_Connected (This, Cloud, Packet.Target) then
@@ -472,14 +477,14 @@ package body Library.Network is
 
             -- send the packet
             This.Cloud.Send
-              (Address => Destination_Address, Port => 5_000, Data => New_Data,
+              (Address => Destination_Address, Port => This.Cloud_Tx_Port, Data => New_Data,
                Last    => Last);
 
          else
 
             -- send the packet to cloud server
             This.Cloud.Send
-              (Address => This.Cloud_Server_Address, Port => 5_000,
+              (Address => This.Cloud_Server_Address, Port => This.Cloud_Tx_Port,
                Data    => New_Data, Last => Last);
 
          end if;
@@ -488,12 +493,12 @@ package body Library.Network is
 
          -- send the packet on radio multicast
          This.Radio.Send
-           (Address => This.Radio_Multicast_Address, Port => 5_000,
+           (Address => This.Radio_Multicast_Address, Port => This.Radio_Tx_Port,
             Data    => New_Data, Last => Last);
 
          -- send the packet to cloud server
          This.Cloud.Send
-           (Address => This.Cloud_Server_Address, Port => 5_000,
+           (Address => This.Cloud_Server_Address, Port => This.Cloud_Tx_Port,
             Data    => New_Data, Last => Last);
 
       end if;

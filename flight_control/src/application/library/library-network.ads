@@ -160,7 +160,9 @@ package Library.Network is
       Radio                   :        Drivers.Ethernet.Ethernet_Access_Type;
       Cloud                   :        Drivers.Ethernet.Ethernet_Access_Type;
       Radio_Multicast_Address :        Drivers.Ethernet.Address_V4_Type;
-      Cloud_Server_Address    :        Drivers.Ethernet.Address_V4_Type);
+      Radio_Tx_Port           :        Drivers.Ethernet.Port_Type;
+      Cloud_Server_Address    :        Drivers.Ethernet.Address_V4_Type;
+      Cloud_Tx_Port           :        Drivers.Ethernet.Port_Type);
 
    procedure Schedule
      (This : in out Network_Type; Cycle : Types.Schedule.Cycle_Type);
@@ -187,7 +189,10 @@ private
       Cloud : Drivers.Ethernet.Ethernet_Access_Type;
 
       Radio_Multicast_Address : Drivers.Ethernet.Address_V4_Type;
+      Radio_Tx_Port           : Drivers.Ethernet.Port_Type;
+
       Cloud_Server_Address    : Drivers.Ethernet.Address_V4_Type;
+      Cloud_Tx_Port           : Drivers.Ethernet.Port_Type;
 
       Device_Address_Transport_Array   : Device_Address_Transport_Array_Type :=
         Device_Address_Transport_Array_Default;
