@@ -1,0 +1,30 @@
+name = "ground_station"
+description = "Shiny new project"
+version = "0.1.0-dev"
+
+authors = ["Nathan Rignall"]
+maintainers = ["Nathan Rignall <rignallnathan@gmail.com>"]
+maintainers-logins = ["NathanRignall"]
+
+executables = ["ground_station"]
+
+[environment]
+DEVICE_IDENTIFIER.set = "100"
+
+IPC_CORE_RX_PORT.set = "8001"
+IPC_CORE_TX_PORT.set = "8002"
+
+EDGE_RX_PORT.set = "8003"
+EDGE_TX_PORT.set = "8004"
+
+RADIO_RX_PORT.set = "8005"
+RADIO_TX_PORT.set = "8006"
+
+CLOUD_SERVER_ADDRESS.set = "127.000.000.001"
+CLOUD_RX_PORT.set = "7001"
+CLOUD_TX_PORT.set = "7001"
+
+[[depends-on]]
+aws = "^21.0.0"
+[[depends-on]]
+gnatcoll = "^21.0.0"
